@@ -13,7 +13,7 @@ class ConfigMaker:
         self.config = configparser.ConfigParser()
         self.numfits = numfits or 0
         self.active_region = (
-            np.random.randint(0, 5, size=1)
+            np.random.randint(0, 5, size=1)[0]
             if active_region is None else active_region)
         self.config['main'] = self.config_main
         self.config['star'] = self.config_star

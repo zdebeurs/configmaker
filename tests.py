@@ -22,10 +22,6 @@ class MyTest(unittest.TestCase):
             path = os.path.join(config.path, 'genconfig' + str(i) + '.cfg')
             self.assertTrue(os.path.exists(path))
 
-    def test_file_loc(self):
-        dir_path = os.path.dirname(os.path.realpath(__file__))
-        self.assertEquals(dir_path, '/Users/Zoe/Documents/SOAP_2/config_maker')
-
     def test_file_content(self):
         config = ConfigMaker(path=self.dir_path, numfits=1)
         config.make_files()
