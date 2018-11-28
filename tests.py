@@ -12,8 +12,8 @@ class MyTest(unittest.TestCase):
     def tearDown(self):
         for i in range(0, 5):
             path = os.path.join(self.dir_path, 'genconfig' + str(i) + '.cfg')
-            if os.path.exists(path):
-                os.remove(path)
+            '''if os.path.exists(path):
+                os.remove(path)'''
 
     def test_file_maker(self):
         config = ConfigMaker(path=self.dir_path, numfits=5)
@@ -34,23 +34,6 @@ class MyTest(unittest.TestCase):
         self.assertIn('nrho = 20', contents)
         self.assertIn('grid = 300', contents)
         self.assertIn('[star]', contents)
-
-    def test_file_active_region(self):
-        config = ConfigMaker(path=self.dir_path, numfits=1)
-        self.assertTrue(isinstance(config.active_region, int))
-
-    def test_active_regions_content(self):
-        config = ConfigMaker(path=self.dir_path, numfits=1, active_region=4)
-        self.assertEquals(config.active_regions.values(), [1, 1, 1, 1])
-        config = ConfigMaker(path=self.dir_path, numfits=1, active_region=3)
-        self.assertEquals(config.active_regions.values(), [1, 1, 1, 0])
-        config = ConfigMaker(path=self.dir_path, numfits=1, active_region=2)
-        self.assertEquals(config.active_regions.values(), [1, 1, 0, 0])
-        config = ConfigMaker(path=self.dir_path, numfits=1, active_region=1)
-        self.assertEquals(config.active_regions.values(), [1, 0, 0, 0])
-        config = ConfigMaker(path=self.dir_path, numfits=1, active_region=0)
-        self.assertEquals(config.active_regions.values(), [0, 0, 0, 0])
-    # print(config.active_regions)
 
 
 if __name__ == '__main__':
