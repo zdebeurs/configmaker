@@ -18,6 +18,7 @@ class ConfigMaker:
         self.config['main'] = self.config_main
         self.config['star'] = self.config_star
         self.config['active_regions'] = self.config_active_regions
+        self.config['output']= self.config_output
 
     @property
     def active_regions(self):
@@ -62,9 +63,33 @@ class ConfigMaker:
     @property
     def config_active_regions(self):
         act_reg_type = np.random.randint(0, 2, size=4)
+        long_active_region = np.random.randint(0, 360, size=4)
+        lat_active_region = np.random.randint(-90, 90, size=4)
+        size_active_region = np.random.uniform(0.001, 0.20, size=4)
         return dict(
             act_reg_type1=act_reg_type[0],
             act_reg_type2=act_reg_type[1],
             act_reg_type3=act_reg_type[2],
             act_reg_type4=act_reg_type[3],
+
+            long1=long_active_region[0],
+            long2=long_active_region[1],
+            long3=long_active_region[2],
+            long4=long_active_region[3],
+
+            lat1=lat_active_region[0],
+            lat2=lat_active_region[1],
+            lat3=lat_active_region[2],
+            lat4=lat_active_region[3],
+
+            size1=m.log(10**size_active_region[0], 10),
+            size2=m.log(10**size_active_region[1], 10),
+            size3=m.log(10**size_active_region[2], 10),
+            size4=m.log(10**size_active_region[3], 10),
             **self.active_regions)
+
+    @property
+    def config_output(self):
+        return {
+            'ph_step': '1',
+            'ph_in': 'None'}
